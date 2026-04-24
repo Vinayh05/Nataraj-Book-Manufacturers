@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nataraj Book Manufacturer | B2B Wholesale Authority</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #1A2F4B;
+      --gold: #D4AF37;
+      --parchment: #F9F7F2;
+      --accent: #E1AD01;
+      --charcoal: #36454F;
+      
+      --primary: var(--gold);
+      --canvas: var(--navy);
+      --text: var(--parchment);
+      --text-muted: rgba(249, 247, 242, 0.7);
+      --border: rgba(212, 175, 55, 0.2);
+      --ease-cinema: cubic-bezier(0.7, 0, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--canvas);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2 log, h3, .font-serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+    /* ─── PREMIUM LOGO LOADER ─── */
+    #loader {
+      position: fixed; inset: 0; 
+      background: #FFFFFF; /* Matching New Logo Background */
+      z-index: 2000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: all 1.5s var(--ease-cinema);
+    }
+    #loader.zoom-out { opacity: 0; pointer-events: none; transform: scale(1.1); }
+    #loader.immersive { transform: scale(40); opacity: 0; pointer-events: none; }
+
+    .loader-logo-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: all 1.2s var(--ease-cinema);
+    }
+    .loader-logo-wrapper.active { transform: scale(1); opacity: 1; }
+    
+    .loader-logo-wrapper img {
+      width: 250px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+      animation: logoBreathing 4s ease-in-out infinite;
+    }
+
+    .loader-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .loader-ring {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      z-index: 1;
+      animation: rotateRing 10s linear infinite;
+    }
+
+    @keyframes logoBreathing {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Site Reveal Animation */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s var(--ease-cinema);
+      will-change: transform, opacity;
+    }
+    .reveal-active .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE SYSTEM ─── */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    @media (max-width: 1024px) {
+      :root { --ease-cinema: cubic-bezier(0.4, 0, 0.2, 1); }
+      nav { height: 80px; }
+      .nav-links { gap: 2rem; }
+      #about .container { gap: 4rem !important; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; } /* Simplified for mobile brand authority */
+      .hero-title { font-size: 3rem !important; }
+      #about .container { grid-template-columns: 1fr !important; gap: 3rem !important; text-align: center; }
+      .feature-grid { grid-template-columns: 1fr !important; }
+      .feature-card-3d { padding: 3rem 2rem !important; }
+      section { padding: 8rem 20px !important; }
+    }
+
+    /* ─── REST OF SITE (PRESERVED) ─── */
+    nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; z-index: 1000; transition: all 0.5s var(--ease-cinema); }
+    nav.scrolled { height: 80px; background: rgba(26, 47, 75, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 50px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 4rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--parchment); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.7; }
+    .btn-outline { padding: 0.8rem 1.8rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.4s; }
+    
+    #hero { 
+      height: 100vh; 
+      width: 100%; 
+      position: relative; 
+      overflow: hidden; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      background: linear-gradient(rgba(26, 47, 75, 0.6), rgba(26, 47, 75, 0.6)), url('Images/hero%20image.png'); 
+      background-size: cover; 
+      background-position: center;
+      will-change: transform;
+    }
+    .hero-content { position: relative; z-index: 100; text-align: center; pointer-events: none; max-width: 900px; padding: 0 5vw; }
+    .hero-eyebrow { font-size: 0.85rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: block; opacity: 0; transform: translateY(20px); transition: all 1.5s var(--ease-cinema); font-weight: 600; }
+    .hero-title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1; color: var(--parchment); margin-bottom: 2rem; opacity: 0; transform: translateY(30px); transition: all 1.8s var(--ease-cinema); }
+    .hero-sub { font-size: 1.2rem; color: var(--parchment); opacity: 0.7; max-width: 600px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: all 1.5s 0.3s var(--ease-cinema); }
+
+    #card-system { position: absolute; inset: 0; z-index: 10; perspective: 1200px; display: flex; align-items: center; justify-content: center; }
+    .flip-card { position: absolute; width: 85px; height: 115px; transform-style: preserve-3d; transition: transform 1.2s var(--ease-cinema), opacity 1s; cursor: pointer; pointer-events: auto; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s var(--ease-cinema); }
+    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+    .card-face { position: absolute; inset: 0; border-radius: 4px; backface-visibility: hidden; box-shadow: 0 8px 25px rgba(26, 47, 75, 0.3); overflow: hidden; border: 1px solid var(--border); }
+    .card-front img { width: 100%; height: 100%; object-fit: cover; }
+    .card-back { background: var(--gold); color: var(--navy); transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--gold); }
+    .card-back span { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; padding: 0.5rem; color: var(--navy); }
+
+    .scroll-spacer { height: 200vh; position: relative; z-index: 1; pointer-events: none; }
+    section { padding: 12rem 10vw; background: var(--canvas); position: relative; z-index: 200; }
+    .container { max-width: 1400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <!-- PREMIUM LOGO LOADER -->
+  <div id="loader">
+    <div class="loader-logo-wrapper" id="loader-logo">
+      <div class="loader-ring"></div>
+      <div class="loader-glow"></div>
+      <img src="Images/Nataraj%20logo.png" alt="Nataraj Construction" loading="eager" decoding="async">
+    </div>
+  </div>
+
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <img src="Images/Red%20Black%20Minimalist%20Online%20Bookstore%20Logo.png" alt="Nataraj Logo" loading="eager" decoding="async">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Legacy</a></li>
+      <li><a href="#features">Systems</a></li>
+      <li><a href="#partnership">Partnership</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-outline">Wholesale Portfolio</a>
+  </nav>
+
+  <div style="position: sticky; top: 0; width: 100%; height: 100vh; z-index: 10;">
+    <section id="hero" class="reveal-container">
+      <div id="card-system"></div>
+      <div class="hero-content" id="hero-text">
+        <div class="reveal-item" style="margin-bottom: 2rem;">
+          <img src="Images/Red%20Black%20Minimalist%20Online%20Bookstore%20Logo.png" style="height: clamp(80px, 10vw, 120px); width: auto; opacity: 0.9;" loading="eager" decoding="async">
+        </div>
+        <span class="hero-eyebrow reveal-item">Established Hubballi 1997</span>
+        <h1 class="hero-title reveal-item" style="font-weight: 900; text-transform: uppercase;">Nataraj Book Manufacturer</h1>
+        <p class="hero-sub reveal-item">Sophisticated manufacturing and distribution systems for the global wholesale industry.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="scroll-spacer"></div>
+
+  <section id="about" style="background: linear-gradient(rgba(26, 47, 75, 0.85), rgba(26, 47, 75, 0.85)), url('Images/legacy%20background.jpg'); background-size: cover; background-position: center; position: relative;">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;">
+      <div style="background: var(--gold); border-radius: 8px; overflow: hidden; aspect-ratio: 4/5; border: 1px solid var(--gold); will-change: transform;">
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=1000&q=80" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;" loading="lazy" decoding="async">
+      </div>
+      <div>
+        <span style="font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); font-weight: 700;">Our Legacy</span>
+        <h2 style="font-size: 4rem; color: var(--parchment); margin: 1.5rem 0 2.5rem;">Founded in Trust, Bound for the World.</h2>
+        <p style="font-size: 1.25rem; color: var(--parchment); opacity: 0.8; margin-bottom: 2rem;">Since 1997, our founder Manjayya Rudrayya Bhavi has maintained a singular focus: to engineer books that serve as the foundation of institutional knowledge.</p>
+        <a href="#contact" class="btn-outline" style="background: var(--gold); color: var(--navy);">Become a Partner</a>
+      </div>
+    </div>
+  </section>
+
+   <!-- FEATURES SECTION (PREMIUM B2B GRID) -->
+  <section id="features" style="background: var(--navy); padding: 8rem 5vw; color: var(--parchment); position: relative; overflow: hidden;">
+    <!-- Texture Overlay -->
+    <div style="position: absolute; inset: 0; opacity: 0.05; pointer-events: none; background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
+    
+    <div class="container" style="position: relative; z-index: 10;">
+      <div style="text-align: center; margin-bottom: 6rem;">
+        <span style="font-size: 0.75rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1.5rem; display: block;">Engineering Excellence</span>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Cormorant Garamond', serif; color: var(--parchment);">The Foundation of Quality</h2>
+      </div>
+
+      <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <!-- Feature 1: Paper Quality -->
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+          <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">01</span>
+          <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Superior Paper Quality</h3>
+          <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">High-GSM archival sheets engineered for timeless writing experiences and zero ink bleed-through.</p>
+        </div>
+
+        <!-- Feature 2: Ergonomic -->
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+          <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">02</span>
+          <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Ergonomic Design</h3>
+          <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">Scientifically structured for reading comfort, featuring true flat-lay binding for an effortless creative flow.</p>
+        </div>
+
+        <!-- Feature 3: Eco -->
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+          <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">03</span>
+          <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Eco-Conscious Materials</h3>
+          <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">FSC-certified sustainable sourcing and lead-free inks, ensuring your legacy doesn't cost the Earth.</p>
+        </div>
+
+        <!-- Feature 4: Durability -->
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+          <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">04</span>
+          <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Unmatched Durability</h3>
+          <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">Industrial-grade binding strength and reinforced covers designed to withstand decades of rigorous institutional use.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .feature-card-3d:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--mustard-gold);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .feature-card-3d:hover .card-bg-glow { opacity: 1; }
+  </style>
+
+  <script>
+    const loaderLogo = document.getElementById('loader-logo');
+    const loaderElem = document.getElementById('loader');
+
+    // Loader Sequence
+    window.addEventListener('load', () => {
+      // Step 1: Logo Gently Constructed (Fade/Scale)
+      setTimeout(() => { loaderLogo.classList.add('active'); }, 500);
+      
+      // Step 2: Immersion Zoom
+      setTimeout(() => { 
+        loaderElem.style.transition = 'all 2.5s cubic-bezier(0.7, 0, 0.3, 1)';
+        loaderElem.classList.add('immersive');
+      }, 3500);
+
+      // Step 3: Reveal Website
+      setTimeout(() => {
+        document.body.classList.add('reveal-active');
+        
+        // Start Hero Card Animation Phase
+        setTimeout(() => { phase = 'line'; updateLayout(); }, 500);
+        setTimeout(() => { phase = 'circle'; updateLayout(); }, 2000);
+      }, 5000);
+    });
+
+    // --- Card Morphing Logic (Preserved from previous version) ---
+    const TOTAL_CARDS = 18;
+    const IMAGES = [
+      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&q=80",
+      "https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80",
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80",
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=300&q=80",
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&q=80"
+    ];
+
+    const cardSystem = document.getElementById('card-system');
+    const cards = [];
+    const eyebrow = document.querySelector('.hero-eyebrow');
+    const title = document.querySelector('.hero-title');
+    const sub = document.querySelector('.hero-sub');
+
+    for (let i = 0; i < TOTAL_CARDS; i++) {
+      const card = document.createElement('div');
+      card.className = 'flip-card';
+      card.innerHTML = `<div class="flip-card-inner"><div class="card-face card-front"><img src="${IMAGES[i%IMAGES.length]}"></div><div class="card-face card-back"><span>ISBN READY<br>NATARAJ B2B</span></div></div>`;
+      cardSystem.appendChild(card);
+      cards.push({ el: card, scatter: { x: (Math.random()-0.5)*1500, y:(Math.random()-0.5)*1000, rot:(Math.random()-0.5)*180, scale:0.1, opacity:0 }, line: { x: (i-TOTAL_CARDS/2)*95, y:0, rot:0, scale:1, opacity:1 } });
+    }
+
+    let phase = 'scatter';
+    let scrollProgress = 0;
+    const lerp = (a, b, t) => a * (1 - t) + b * t;
+
+    function updateLayout() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      cards.forEach((c, i) => {
+        let target = { x: 0, y: 0, rot: 0, scale: 1, opacity: 1 };
+        if (phase === 'scatter') target = c.scatter;
+        else if (phase === 'line') target = c.line;
+        else {
+          const radius = Math.min(w, h) * 0.35;
+          const circleAngle = (i / TOTAL_CARDS) * 360;
+          const circleRad = (circleAngle * Math.PI) / 180;
+          const circlePos = { x: Math.cos(circleRad) * radius, y: Math.sin(circleRad) * radius, rot: circleAngle + 90 };
+          const spread = w < 768 ? 120 : 140;
+          const startAngle = -90 - (spread / 2);
+          const arcAngle = startAngle + (i * (spread / (TOTAL_CARDS - 1)));
+          const arcRad = (arcAngle * Math.PI) / 180;
+          const arcRadius = w * (w < 768 ? 0.7 : 0.5);
+          const arcPos = { x: Math.cos(arcRad) * arcRadius, y: Math.sin(arcRad) * arcRadius + (h * 0.8) + arcRadius - (h/2), rot: arcAngle + 90, scale: w < 768 ? 1.6 : 2.2 };
+          target.x = lerp(circlePos.x, arcPos.x, scrollProgress);
+          target.y = lerp(circlePos.y, arcPos.y, scrollProgress);
+          target.rot = lerp(circlePos.rot, arcPos.rot, scrollProgress);
+          target.scale = lerp(1, arcPos.scale, scrollProgress);
+        }
+        c.el.style.transform = `translate(${target.x}px, ${target.y}px) rotate(${target.rot}deg) scale(${target.scale})`;
+        c.el.style.opacity = target.opacity;
+      });
+
+      if (scrollProgress > 0.5) {
+        const t = (scrollProgress - 0.5) * 2;
+        eyebrow.style.opacity = t; title.style.opacity = t; sub.style.opacity = t;
+        eyebrow.style.transform = `translateY(${lerp(20, 0, t)}px)`;
+        title.style.transform = `translateY(${lerp(30, 0, t)}px)`;
+        sub.style.transform = `translateY(${lerp(30, 0, t)}px)`;
+      } else { eyebrow.style.opacity = 0; title.style.opacity = 0; sub.style.opacity = 0; }
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      scrollProgress = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (phase !== 'scatter' && phase !== 'line') updateLayout();
+          const nav = document.getElementById('navbar');
+          if (window.scrollY > 80) nav.classList.add('scrolled');
+          else nav.classList.remove('scrolled');
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateLayout, 100);
+    });
+    updateLayout();
+
+    // Mouse tracking for feature cards
+    document.querySelectorAll('.feature-card-3d').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--x', `${x}%`);
+        card.style.setProperty('--y', `${y}%`);
+      });
+    });
+  </script>
+</body>
+</html>

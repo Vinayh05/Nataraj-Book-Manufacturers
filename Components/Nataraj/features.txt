@@ -1,0 +1,134 @@
+import React, { useRef, useState, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Text, Float, PerspectiveCamera, OrbitControls, Environment, ContactShadows } from '@react-three/drei';
+import * as THREE from 'three';
+
+/**
+ * NATARAJ BOOK MANUFACTURERS - FEATURES COMPONENT (R3F EDITION)
+ * 
+ * Re-imagined with React Three Fiber and the Antigravity Framework.
+ * Focus: Superior Paper Quality, Ergonomic Design, Eco-Conscious Materials, Unmatched Durability.
+ */
+
+const COLORS = {
+  NAVY: '#1A2F4B',
+  GOLD: '#D4AF37',
+  PARCHMENT: '#F9F7F2',
+  ACCENT: '#E1AD01'
+};
+
+const FEATURES_DATA = [
+  {
+    title: "Superior Paper Quality",
+    desc: "High-GSM archival sheets for timeless writing experiences.",
+    pos: [-2.5, 1.5, 0]
+  },
+  {
+    title: "Ergonomic Design",
+    desc: "Engineered for reading comfort and flat-lay ease.",
+    pos: [2.5, 1.5, 0]
+  },
+  {
+    title: "Eco-Conscious Materials",
+    desc: "FSC-certified sustainable sourcing for a better planet.",
+    pos: [-2.5, -1.5, 0]
+  },
+  {
+    title: "Unmatched Durability",
+    desc: "Industrial-grade binding strength that lasts decades.",
+    pos: [2.5, -1.5, 0]
+  }
+];
+
+function FeatureCard({ title, desc, pos, index }) {
+  const meshRef = useRef();
+  const [hovered, setHovered] = useState(false);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (meshRef.current) {
+      meshRef.current.position.y = pos[1] + Math.sin(t + index) * 0.1;
+      meshRef.current.scale.lerp(new THREE.Vector3(hovered ? 1.05 : 1, hovered ? 1.05 : 1, 1), 0.1);
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, hovered ? 0.1 : 0, 0.1);
+    }
+  });
+
+  return (
+    <group position={pos}>
+      <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+        <mesh
+          ref={meshRef}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <boxGeometry args={[4.5, 2.8, 0.15]} />
+          <meshPhysicalMaterial 
+            color={hovered ? COLORS.GOLD : COLORS.NAVY}
+            metalness={0.7}
+            roughness={0.2}
+            clearcoat={1}
+            transmission={0.4}
+            thickness={1.5}
+          />
+          
+          <Text
+            position={[0, 0.5, 0.1]}
+            fontSize={0.22}
+            color={hovered ? COLORS.NAVY : COLORS.PARCHMENT}
+            font="https://fonts.gstatic.com/s/cormorantgaramond/v11/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtK.woff"
+            maxWidth={4}
+            textAlign="center"
+          >
+            {title.toUpperCase()}
+          </Text>
+          
+          <Text
+            position={[0, -0.4, 0.1]}
+            fontSize={0.14}
+            color={hovered ? COLORS.NAVY : COLORS.PARCHMENT}
+            font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff"
+            maxWidth={3.8}
+            textAlign="center"
+            opacity={0.8}
+          >
+            {desc}
+          </Text>
+
+          {/* Golden Highlight Border */}
+          <mesh position={[0, 0, -0.05]}>
+            <planeGeometry args={[4.6, 2.9]} />
+            <meshBasicMaterial color={COLORS.GOLD} transparent opacity={hovered ? 0.4 : 0.1} />
+          </mesh>
+        </mesh>
+      </Float>
+    </group>
+  );
+}
+
+export default function FeaturesComponent() {
+  return (
+    <div className="w-full h-screen bg-[#1A2F4B] overflow-hidden relative">
+      <Canvas shadows camera={{ position: [0, 0, 10], fov: 45 }}>
+        <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+        <ambientLight intensity={0.4} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+        <Environment preset="studio" />
+        
+        <group>
+          {FEATURES_DATA.map((f, i) => (
+            <FeatureCard key={i} title={f.title} desc={f.desc} pos={f.pos} index={i} />
+          ))}
+        </group>
+
+        <ContactShadows position={[0, -4.5, 0]} opacity={0.3} scale={15} blur={1.5} far={4.5} />
+        <OrbitControls enableZoom={false} enablePan={false} />
+      </Canvas>
+
+      {/* Narrative Overlay */}
+      <div className="absolute top-12 left-0 w-full text-center pointer-events-none px-4">
+        <h2 className="font-serif text-[#D4AF37] text-xs uppercase tracking-[0.5em] mb-4">Manufacturing Excellence</h2>
+        <h1 className="font-serif text-[#F9F7F2] text-4xl md:text-6xl font-light">The Literacy Foundation</h1>
+      </div>
+    </div>
+  );
+}

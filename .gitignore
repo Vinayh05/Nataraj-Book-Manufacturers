@@ -1,0 +1,7 @@
+.agents/
+.claude/
+scratch/
+MCPservers/
+*.log
+node_modules/
+.DS_Store
