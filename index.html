@@ -122,14 +122,27 @@
       padding: 0 5vw;
     }
 
-    @media (max-width: 1024px) {
-      :root { --ease-cinema: cubic-bezier(0.4, 0, 0.2, 1); }
-      nav { height: 80px; }
-      .nav-links { gap: 2rem; }
-      #about .container { gap: 4rem !important; }
+    /* Large Desktops */
+    @media (min-width: 1400px) {
+      .hero-title { font-size: 5.5rem; }
+      .feature-card-3d { flex: 0 0 400px; }
     }
 
+    /* Tablets Landscape & Small Laptops */
+    @media (max-width: 1024px) {
+      :root { --ease-cinema: cubic-bezier(0.4, 0, 0.2, 1); }
+      nav { height: 80px; padding: 0 4vw; }
+      .nav-links { gap: 2rem; }
+      #about .container { gap: 4rem !important; }
+      .hero-logo { height: 100px !important; }
+      .flip-card { width: 70px; height: 95px; }
+      .feature-card-3d { flex: 0 0 320px; padding: 3rem 2rem; }
+      section { padding: 8rem 5vw; }
+    }
+
+    /* Tablets Portrait */
     @media (max-width: 768px) {
+      /* Navigation */
       nav { padding: 0 20px; }
       .nav-links { 
         position: fixed; inset: 0; background: var(--navy); 
@@ -140,14 +153,80 @@
       .nav-links.active { transform: translateX(0); }
       .nav-links li { margin: 1.5rem 0; }
       .nav-links a { font-size: 1.2rem; }
+      .nav .btn-outline { display: none; }
       
       .mobile-toggle { display: block !important; }
       
-      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-      #about .container { grid-template-columns: 1fr !important; gap: 3rem !important; text-align: center; }
-      .feature-grid { grid-template-columns: 1fr !important; }
-      .feature-card-3d { padding: 3rem 2rem !important; }
+      /* Hero */
+      .hero-title { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+      .hero-sub { font-size: 1rem; }
+      .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; }
+      .hero-logo { height: clamp(60px, 12vw, 80px) !important; }
+      .flip-card { width: 55px; height: 75px; }
+      
+      /* About */
+      #about .container { 
+        grid-template-columns: 1fr !important; 
+        gap: 3rem !important; 
+        text-align: center; 
+      }
+      #about .container > div:first-child { max-width: 400px; margin: 0 auto; }
+      #about h2 { font-size: clamp(2rem, 5vw, 3rem) !important; }
+      #about p { font-size: 1.1rem !important; }
+      
+      /* Features */
+      #feature-progress { width: 50px; height: 50px; top: 2rem; right: 4vw; }
+      .feature-card-3d { flex: 0 0 280px; padding: 2.5rem 1.5rem; }
+      #features-scroll-container { gap: 1.5rem; padding: 15px 0; }
+      
+      /* General */
       section { padding: 6rem 20px !important; }
+      h2 { font-size: clamp(2rem, 5vw, 3rem); }
+    }
+
+    /* Mobile Phones */
+    @media (max-width: 480px) {
+      /* Loader */
+      .loader-logo-wrapper img { width: 180px; }
+      .loader-glow { width: 200px; height: 200px; }
+      .loader-ring { width: 180px; height: 180px; }
+      
+      /* Navigation */
+      .logo img { height: 40px; }
+      nav { height: 70px; }
+      
+      /* Hero */
+      .hero-content { padding: 0 4vw; }
+      .hero-title { font-size: clamp(1.8rem, 7vw, 2.5rem) !important; letter-spacing: 0.02em; }
+      .hero-sub { font-size: 0.9rem; max-width: 300px; }
+      .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.25em; margin-bottom: 1rem; }
+      .flip-card { width: 45px; height: 60px; }
+      
+      /* Cards Animation */
+      .card-back span { font-size: 0.45rem; padding: 0.3rem; }
+      
+      /* About */
+      #about h2 { font-size: clamp(1.8rem, 5vw, 2.2rem) !important; }
+      #about p { font-size: 1rem !important; }
+      .btn-outline { padding: 0.7rem 1.5rem; font-size: 0.65rem; }
+      
+      /* Features */
+      #feature-progress { display: none; }
+      .feature-card-3d { flex: 0 0 260px; padding: 2rem 1.25rem; }
+      .feature-card-3d h3 { font-size: 1.4rem !important; }
+      .feature-card-3d span:first-child { font-size: 2.5rem !important; }
+      .feature-card-3d p { font-size: 0.9rem; }
+      
+      /* Footer spacing */
+      section { padding: 5rem 16px !important; }
+    }
+
+    /* Extra Small Phones */
+    @media (max-width: 360px) {
+      .hero-title { font-size: 1.6rem !important; }
+      .hero-sub { font-size: 0.85rem; }
+      .feature-card-3d { flex: 0 0 240px; }
+      .logo img { height: 35px; }
     }
 
     .mobile-toggle {
@@ -241,7 +320,7 @@
       <div id="card-system"></div>
       <div class="hero-content" id="hero-text">
         <div class="reveal-item" style="margin-bottom: 2rem;">
-          <img src="Images/Red%20Black%20Minimalist%20Online%20Bookstore%20Logo.png" style="height: clamp(80px, 10vw, 120px); width: auto; opacity: 0.9;" loading="eager" decoding="async">
+          <img src="Images/Red%20Black%20Minimalist%20Online%20Bookstore%20Logo.png" class="hero-logo" style="height: clamp(80px, 10vw, 120px); width: auto; opacity: 0.9;" loading="eager" decoding="async">
         </div>
         <span class="hero-eyebrow reveal-item">Established Hubballi 1997</span>
         <h1 class="hero-title reveal-item" style="font-weight: 900; text-transform: uppercase;">Nataraj Book Manufacturer</h1>
@@ -266,10 +345,16 @@
     </div>
   </section>
 
-   <!-- FEATURES SECTION (PREMIUM B2B GRID) -->
+   <!-- FEATURES SECTION (SCROLL-LINKED HORIZONTAL) -->
   <section id="features" style="background: var(--navy); padding: 8rem 5vw; color: var(--parchment); position: relative; overflow: hidden;">
     <!-- Texture Overlay -->
     <div style="position: absolute; inset: 0; opacity: 0.05; pointer-events: none; background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
+    
+    <!-- Progress Circle -->
+    <svg id="feature-progress" width="80" height="80" viewBox="0 0 100 100" style="position: absolute; top: 4rem; right: 5vw; z-index: 100; transform: rotate(-90deg);">
+      <circle cx="50" cy="50" r="30" pathLength="1" style="stroke: #0b1011; stroke-width: 10%; fill: none;" />
+      <circle id="feature-progress-indicator" cx="50" cy="50" r="30" pathLength="1" style="stroke: var(--gold); stroke-width: 10%; fill: none; stroke-dashoffset: 0;" />
+    </svg>
     
     <div class="container" style="position: relative; z-index: 10;">
       <div style="text-align: center; margin-bottom: 6rem;">
@@ -277,10 +362,10 @@
         <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Cormorant Garamond', serif; color: var(--parchment);">The Foundation of Quality</h2>
       </div>
 
-      <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        
-        <!-- Feature 1: Paper Quality -->
-        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+<!-- Horizontal Scroll Container with Mask -->
+      <div id="features-scroll-container" style="display: flex; list-style: none; overflow-x: auto; padding: 20px 0; flex: 0 0 auto; margin: 0 auto; gap: 2rem; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; touch-action: pan-x;">
+        <!-- Feature cards... -->
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
           <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">01</span>
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Superior Paper Quality</h3>
@@ -288,7 +373,7 @@
         </div>
 
         <!-- Feature 2: Ergonomic -->
-        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
           <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">02</span>
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Ergonomic Design</h3>
@@ -296,7 +381,7 @@
         </div>
 
         <!-- Feature 3: Eco -->
-        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
           <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">03</span>
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Eco-Conscious Materials</h3>
@@ -304,7 +389,7 @@
         </div>
 
         <!-- Feature 4: Durability -->
-        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer;">
+        <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
           <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">04</span>
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Unmatched Durability</h3>
@@ -313,6 +398,11 @@
 
       </div>
     </div>
+    <style>{`
+      #features-scroll-container::-webkit-scrollbar { height: 5px; width: 5px; background: rgba(255,255,255,0.2); -webkit-border-radius: 1ex; }
+      #features-scroll-container::-webkit-scrollbar-thumb { background: var(--gold); -webkit-border-radius: 1ex; }
+      #features-scroll-container::-webkit-scrollbar-corner { background: rgba(255,255,255,0.2); }
+    `}</style>
   </section>
 
   <style>
@@ -323,6 +413,19 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
     .feature-card-3d:hover .card-bg-glow { opacity: 1; }
+
+    /* Scroll hints for touch devices */
+    @media (hover: none) and (pointer: coarse) {
+      .feature-card-3d::after {
+        content: '⟨ swipe ⟩';
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.7rem;
+        color: var(--gold);
+        opacity: 0.4;
+      }
+    }
   </style>
 
   <script>
@@ -466,6 +569,43 @@
         card.style.setProperty('--y', `${y}%`);
       });
     });
+
+    // Features Section - Scroll Progress & Mask
+    const featuresContainer = document.getElementById('features-scroll-container');
+    const featureProgressIndicator = document.getElementById('feature-progress-indicator');
+
+    if (featuresContainer && featureProgressIndicator) {
+      const left = `0%`;
+      const right = `100%`;
+      const leftInset = `20%`;
+      const rightInset = `80%`;
+
+      function updateFeatureMask() {
+        const { scrollLeft, scrollWidth, clientWidth } = featuresContainer;
+        const maxScroll = scrollWidth - clientWidth;
+        const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+
+        // Update progress circle
+        featureProgressIndicator.style.strokeDasharray = '188.5';
+        featureProgressIndicator.style.strokeDashoffset = 188.5 * (1 - progress);
+
+        // Update mask gradient
+        if (progress === 0) {
+          featuresContainer.style.maskImage = `linear-gradient(90deg, #000, #000 ${left}, #000 ${rightInset}, transparent)`;
+          featuresContainer.style.webkitMaskImage = `linear-gradient(90deg, #000, #000 ${left}, #000 ${rightInset}, transparent)`;
+        } else if (progress === 1) {
+          featuresContainer.style.maskImage = `linear-gradient(90deg, transparent, #000 ${leftInset}, #000 ${right}, #000)`;
+          featuresContainer.style.webkitMaskImage = `linear-gradient(90deg, transparent, #000 ${leftInset}, #000 ${right}, #000)`;
+        } else {
+          featuresContainer.style.maskImage = `linear-gradient(90deg, transparent, #000 ${leftInset}, #000 ${rightInset}, transparent)`;
+          featuresContainer.style.webkitMaskImage = `linear-gradient(90deg, transparent, #000 ${leftInset}, #000 ${rightInset}, transparent)`;
+        }
+      }
+
+      featuresContainer.addEventListener('scroll', updateFeatureMask);
+      window.addEventListener('resize', updateFeatureMask);
+      updateFeatureMask();
+    }
   </script>
 </body>
 </html>
