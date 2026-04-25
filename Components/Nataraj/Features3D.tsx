@@ -9,7 +9,8 @@ const COLORS = {
   NAVY: '#1A2F4B',
   GOLD: '#D4AF37',
   PARCHMENT: '#F9F7F2',
-  ACCENT: '#E1AD01'
+  ACCENT: '#E1AD01',
+  WHITE: '#FFFFFF'
 };
 
 const FEATURES = [
@@ -67,19 +68,18 @@ function FeatureCard({ title, description, position, color, index }) {
         >
           <boxGeometry args={[4, 2.5, 0.2]} />
           <meshPhysicalMaterial 
-            color={hovered ? COLORS.GOLD : COLORS.NAVY}
-            metalness={0.8}
-            roughness={0.2}
-            clearcoat={1}
-            transmission={0.5}
-            thickness={1}
+            color={COLORS.WHITE}
+            metalness={0.1}
+            roughness={0.5}
+            transparent
+            opacity={0.2}
           />
           
           {/* Card Content (Typography) */}
           <Text
             position={[0, 0.4, 0.15]}
             fontSize={0.25}
-            color={hovered ? COLORS.NAVY : COLORS.PARCHMENT}
+            color={COLORS.GOLD}
             font="https://fonts.gstatic.com/s/cormorantgaramond/v11/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtK.woff"
             anchorX="center"
             anchorY="middle"
@@ -91,7 +91,7 @@ function FeatureCard({ title, description, position, color, index }) {
           <Text
             position={[0, -0.4, 0.15]}
             fontSize={0.12}
-            color={hovered ? COLORS.NAVY : COLORS.PARCHMENT}
+            color={COLORS.NAVY}
             font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff"
             anchorX="center"
             anchorY="middle"
