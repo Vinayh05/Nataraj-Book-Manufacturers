@@ -40,50 +40,16 @@
     /* ─── PREMIUM LOGO LOADER ─── */
     #loader {
       position: fixed; inset: 0; 
+      background: #FFFFFF; /* Matching New Logo Background */
       z-index: 2000;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      overflow: hidden;
+      transition: all 1.5s var(--ease-cinema);
     }
-
-    #loader::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('Images/loadinglogo2.png') center/cover no-repeat;
-      will-change: transform;
-    }
-    
-    #loader::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(26, 47, 75, 0.3);
-      z-index: 1;
-    }
-
-    #loader.immersive::before {
-      animation: immersiveZoom 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-    }
-    
-    #loader.immersive::after {
-      animation: fadeOutCover 2s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-    }
-
-    @keyframes immersiveZoom {
-      0% { transform: scale(1); }
-      70% { transform: scale(25); opacity: 0.3; }
-      100% { transform: scale(35); opacity: 0; pointer-events: none; }
-    }
-    
-    @keyframes fadeOutCover {
-      0% { opacity: 1; }
-      60% { opacity: 0; }
-      100% { opacity: 0; pointer-events: none; }
-    }
+    #loader.zoom-out { opacity: 0; pointer-events: none; transform: scale(1.1); }
+    #loader.immersive { transform: scale(40); opacity: 0; pointer-events: none; }
 
     .loader-logo-wrapper {
       position: relative;
-      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -99,13 +65,6 @@
       position: relative;
       z-index: 2;
       animation: logoBreathing 4s ease-in-out infinite;
-    }
-
-    @media (max-width: 480px) {
-      .loader-logo-wrapper img { width: 180px; }
-    }
-    @media (max-width: 360px) {
-      .loader-logo-wrapper img { width: 140px; }
     }
 
     .loader-glow {
@@ -218,6 +177,7 @@
       /* Features */
       #feature-progress { width: 50px; height: 50px; top: 2rem; right: 4vw; }
       .feature-card-3d { flex: 0 0 280px; padding: 2.5rem 1.5rem; }
+      .feature-card-3d img { height: 150px; }
       #features-scroll-container { gap: 1.5rem; padding: 15px 0; }
       
       /* General */
@@ -255,8 +215,8 @@
       #feature-progress { display: none; }
       .feature-card-3d { flex: 0 0 260px; padding: 2rem 1.25rem; }
       .feature-card-3d h3 { font-size: 1.4rem !important; }
-      .feature-card-3d span:first-child { font-size: 2.5rem !important; }
       .feature-card-3d p { font-size: 0.9rem; }
+      .feature-card-3d img { height: 140px !important; }
       
       /* Footer spacing */
       section { padding: 5rem 16px !important; }
@@ -405,10 +365,10 @@
 
 <!-- Horizontal Scroll Container with Mask -->
       <div id="features-scroll-container" style="display: flex; list-style: none; overflow-x: auto; padding: 20px 0; flex: 0 0 auto; margin: 0 auto; gap: 2rem; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; touch-action: pan-x;">
-        <!-- Feature cards... -->
+        <!-- Feature 1: Paper Quality -->
         <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">01</span>
+          <img src="Images/Paper.jpg" alt="Premium Paper Texture" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; opacity: 0.85;" loading="lazy" decoding="async">
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Superior Paper Quality</h3>
           <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">High-GSM archival sheets engineered for timeless writing experiences and zero ink bleed-through.</p>
         </div>
@@ -416,7 +376,7 @@
         <!-- Feature 2: Ergonomic -->
         <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">02</span>
+          <img src="Images/ergonomic.jpg" alt="Ergonomic Design" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; opacity: 0.85;" loading="lazy" decoding="async">
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Ergonomic Design</h3>
           <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">Scientifically structured for reading comfort, featuring true flat-lay binding for an effortless creative flow.</p>
         </div>
@@ -424,7 +384,7 @@
         <!-- Feature 3: Eco -->
         <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">03</span>
+          <img src="Images/eco).jpg" alt="Eco-Conscious Materials" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; opacity: 0.85;" loading="lazy" decoding="async">
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Eco-Conscious Materials</h3>
           <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">FSC-certified sustainable sourcing and lead-free inks, ensuring your legacy doesn't cost the Earth.</p>
         </div>
@@ -432,7 +392,7 @@
         <!-- Feature 4: Durability -->
         <div class="feature-card-3d" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4rem 3rem; border-radius: 4px; transition: all 0.5s var(--ease-cinema); position: relative; overflow: hidden; cursor: pointer; flex: 0 0 350px;">
           <div class="card-bg-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.1) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;"></div>
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; opacity: 0.1; display: block; margin-bottom: 1rem;">04</span>
+          <img src="Images/durability.jpg" alt="Unmatched Durability" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; opacity: 0.85;" loading="lazy" decoding="async">
           <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); margin-bottom: 1.5rem;">Unmatched Durability</h3>
           <p style="font-size: 1rem; opacity: 0.7; line-height: 1.8; font-weight: 300;">Industrial-grade binding strength and reinforced covers designed to withstand decades of rigorous institutional use.</p>
         </div>
