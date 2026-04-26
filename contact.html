@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Nataraj Book Manufacturer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #1A2F4B;
+      --gold: #D4AF37;
+      --parchment: #F9F7F2;
+      --accent: #E1AD01;
+      --charcoal: #36454F;
+      
+      --primary: var(--gold);
+      --canvas: var(--navy);
+      --text: var(--parchment);
+      --text-muted: rgba(249, 247, 242, 0.7);
+      --border: rgba(212, 175, 55, 0.2);
+      --ease-cinema: cubic-bezier(0.7, 0, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--canvas);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, .font-serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 6rem 20px !important; }
+      h2 { font-size: clamp(2rem, 5vw, 3rem); }
+      .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .contact-card { padding: 2.5rem 1.5rem !important; }
+    }
+
+    @media (max-width: 480px) {
+      #contact-hero { min-height: 50vh; padding-top: 100px; }
+      .contact-hero-content h1 { font-size: clamp(2rem, 6vw, 3rem) !important; }
+      .contact-hero-content p { font-size: 1rem !important; }
+      .contact-card { padding: 2rem 1rem !important; }
+      .contact-icon { width: 50px !important; height: 50px !important; }
+      .contact-icon svg { width: 24px !important; height: 24px !important; }
+      .contact-card h3 { font-size: 1.3rem !important; }
+      .contact-card p { font-size: 1rem !important; }
+      #cta { padding: 6rem 20px !important; }
+      #cta h2 { font-size: clamp(1.8rem, 5vw, 2.5rem) !important; }
+      #cta p { font-size: 1rem !important; }
+      footer { padding: 2rem 20px !important; }
+      footer p { font-size: 0.75rem !important; }
+    }
+
+    @media (max-width: 360px) {
+      .contact-card { padding: 1.5rem !important; }
+      .btn-gold { padding: 0.8rem 2rem !important; font-size: 0.7rem !important; }
+    }
+
+    nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; z-index: 1000; background: rgba(26, 47, 75, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 50px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 4rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--parchment); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.7; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+    .btn-outline { padding: 0.8rem 1.8rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.4s; }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+
+    .mobile-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer; z-index: 1000;
+      width: 30px; height: 20px; position: relative;
+    }
+    .mobile-toggle span {
+      display: block; width: 100%; height: 2px; background: var(--gold);
+      position: absolute; transition: all 0.3s;
+    }
+    .mobile-toggle span:nth-child(1) { top: 0; }
+    .mobile-toggle span:nth-child(2) { top: 9px; }
+    .mobile-toggle span:nth-child(3) { top: 18px; }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+
+    @media (max-width: 768px) {
+      .nav-links { 
+        position: fixed; inset: 0; background: var(--navy); 
+        flex-direction: column; justify-content: center; align-items: center;
+        transform: translateX(100%); transition: transform 0.6s var(--ease-cinema);
+        z-index: 999;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .nav-links li { margin: 1.5rem 0; }
+      .nav-links a { font-size: 1.2rem; }
+      
+      .mobile-toggle { display: block !important; }
+    }
+
+    #contact-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(26, 47, 75, 0.85), rgba(26, 47, 75, 0.85)), url('Images/hero%20image.png');
+      background-size: cover;
+      background-position: center;
+      padding-top: 120px;
+    }
+
+    .contact-hero-content {
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .contact-hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--parchment);
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .contact-hero-content p {
+      font-size: 1.2rem;
+      color: var(--parchment);
+      opacity: 0.8;
+    }
+
+    #contact-details {
+      padding: 8rem 5vw;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact-details::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    #contact-details .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-card {
+      background: rgba(26, 47, 75, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.4s var(--ease-cinema);
+    }
+
+    .contact-card:hover {
+      background: rgba(26, 47, 75, 0.6);
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .contact-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--navy);
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      color: var(--parchment);
+      margin-bottom: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .contact-card p {
+      font-size: 1.1rem;
+      color: var(--parchment);
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .contact-card a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .contact-card a:hover {
+      opacity: 0.7;
+    }
+
+    #cta {
+      padding: 8rem 5vw;
+      background: linear-gradient(rgba(26, 47, 75, 0.92), rgba(26, 47, 75, 0.92)), url('Images/legacy%20background.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+
+    #cta h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--parchment);
+      margin-bottom: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    #cta p {
+      font-size: 1.15rem;
+      color: var(--parchment);
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-radius: 4px;
+      transition: all 0.4s var(--ease-cinema);
+    }
+
+    .btn-gold:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      padding: 3rem 5vw;
+      background: #0f1a2a;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="logo" style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: 0.25em; color: var(--parchment);">NATARAJ</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#about">Legacy</a></li>
+      <li><a href="index.html#features">Systems</a></li>
+      <li><a href="index.html#partnership">Partnership</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div style="display: flex; align-items: center; gap: 2rem;">
+      <a href="index.html#contact" class="btn-outline">Portfolio</a>
+      <button class="mobile-toggle" id="menu-toggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="contact-hero">
+    <div class="contact-hero-content">
+      <h1>Get In Touch</h1>
+      <p>We welcome inquiries from potential partners and wholesale buyers. Reach out to discuss how we can serve your business needs.</p>
+    </div>
+  </section>
+
+  <section id="contact-details">
+    <img class="bg-image" src="Images/contactbackground.jpg" alt="">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <h3>Location</h3>
+        <p>Near New Bus Stand<br>Hubballi, Karnataka 580020<br>India</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <h3>Email</h3>
+        <p><a href="mailto:info@natarajbooks.com">info@natarajbooks.com</a></p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <h3>Phone</h3>
+        <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <h2>Ready to Partner with Us?</h2>
+    <p>Join our network of successful wholesale partners and experience premium quality book manufacturing.</p>
+    <a href="index.html#partnership" class="btn-gold">Become a Partner</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Nataraj Book Manufacturer. All rights reserved. Established Hubballi 1997.</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+  </script>
+
+</body>
+</html>
