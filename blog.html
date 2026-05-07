@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | Nataraj Book Manufacturer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #1A2F4B;
+      --gold: #D4AF37;
+      --parchment: #F9F7F2;
+      --accent: #E1AD01;
+      --charcoal: #36454F;
+      
+      --primary: var(--gold);
+      --canvas: var(--navy);
+      --text: var(--parchment);
+      --text-muted: rgba(249, 247, 242, 0.7);
+      --border: rgba(212, 175, 55, 0.2);
+      --ease-cinema: cubic-bezier(0.7, 0, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--canvas);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, .font-serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+    nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; z-index: 1000; transition: all 0.5s var(--ease-cinema); background: rgba(26, 47, 75, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+    nav.scrolled { height: 80px; background: rgba(26, 47, 75, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 50px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 4rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--parchment); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.7; }
+    .btn-outline { padding: 0.8rem 1.8rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.4s; }
+    
+    .mobile-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer; z-index: 1000;
+      width: 30px; height: 20px; position: relative;
+    }
+    .mobile-toggle span {
+      display: block; width: 100%; height: 2px; background: var(--gold);
+      position: absolute; transition: all 0.3s;
+    }
+    .mobile-toggle span:nth-child(1) { top: 0; }
+    .mobile-toggle span:nth-child(2) { top: 9px; }
+    .mobile-toggle span:nth-child(3) { top: 18px; }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+
+    .hero-section {
+      padding: 180px 5vw 100px;
+      background: linear-gradient(rgba(26, 47, 75, 0.85), rgba(26, 47, 75, 0.85)), url('Images/legacy%20background.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--parchment);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-section .subtitle {
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .blog-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 5vw;
+    }
+
+    .blog-section {
+      margin-bottom: 80px;
+    }
+
+    .blog-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--parchment);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blog-section h3 {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .blog-section p {
+      font-size: 1.1rem;
+      color: var(--text);
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+      line-height: 1.9;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 2.5rem;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--text);
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .values-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .values-list li {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .values-list .icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .values-list .icon::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--navy);
+      border-radius: 50%;
+    }
+
+    .values-list .content h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--parchment);
+      margin-bottom: 0.5rem;
+    }
+
+    .values-list .content p {
+      font-size: 1rem;
+      color: var(--text);
+      opacity: 0.75;
+      margin: 0;
+    }
+
+    .swoc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .swoc-card {
+      padding: 2rem;
+      border-radius: 4px;
+    }
+
+    .swoc-card.strength { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); }
+    .swoc-card.weakness { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .swoc-card.opportunity { background: rgba(72, 187, 120, 0.1); border: 1px solid rgba(72, 187, 120, 0.3); }
+    .swoc-card.challenge { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .swoc-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .swoc-card.strength h4 { color: var(--gold); }
+    .swoc-card.weakness h4 { color: #EF4444; }
+    .swoc-card.opportunity h4 { color: #48BB78; }
+    .swoc-card.challenge h4 { color: #F59E0B; }
+
+    .swoc-card ul {
+      list-style: none;
+    }
+
+    .swoc-card li {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .swoc-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0.5;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.03);
+      padding: 2rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .product-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.75;
+      margin: 0;
+    }
+
+    .cta-section {
+      background: linear-gradient(rgba(26, 47, 75, 0.9), rgba(26, 47, 75, 0.9)), url('Images/legacy%20background.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 5vw;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--parchment);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--text);
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    footer {
+      background: #0F1A2B;
+      padding: 60px 5vw 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    footer .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--parchment);
+      letter-spacing: 0.2em;
+    }
+
+    footer .copyright {
+      font-size: 0.85rem;
+      color: var(--text);
+      opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { 
+        position: fixed; inset: 0; background: var(--navy); 
+        flex-direction: column; justify-content: center; align-items: center;
+        transform: translateX(100%); transition: transform 0.6s var(--ease-cinema);
+        z-index: 999;
+      }
+      .nav-links.active { transform: translateX(0); }
+      .nav-links li { margin: 1.5rem 0; }
+      .nav-links a { font-size: 1.2rem; }
+      .nav .btn-outline { display: none; }
+      .mobile-toggle { display: block !important; }
+      
+      .swoc-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="logo" style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: 0.25em; color: var(--parchment);">NATARAJ</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#features">Systems</a></li>
+      <li><a href="#partnership">Partnership</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="display: flex; align-items: center; gap: 2rem;">
+      <a href="contact.html" class="btn-outline">Portfolio</a>
+      <button class="mobile-toggle" id="menu-toggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <span class="subtitle">Our Story</span>
+    <h1>From humble beginnings to industry leaders</h1>
+    <p style="max-width: 700px; opacity: 0.8; font-size: 1.1rem; margin-top: 1.5rem;">Discover how a small retail shop in Durgad Bail transformed into one of Karnataka's most trusted notebook manufacturers.</p>
+  </section>
+
+  <article class="blog-content">
+    <section class="blog-section">
+      <h2>Company Profile</h2>
+      <p>Founded in 2017 by Manjayya Bhavimath alongside his elder brother, Eskay Industries began as a small retail shop in Noolvi Road before relocating to Nekar Nagar, Hubli in 2020 during the COVID-19 pandemic. What started as a modest venture has grown into a thriving manufacturing hub serving customers across Karnataka.</p>
+      <p>Their mission remains unwavering: to expand their business while providing quality products to customers all over India. Before establishing Eskay Industries, the founders operated a retail shop in Durgad Bail, Hubli, which laid the foundation for their journey into the wholesale market.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="value">2017</span>
+          <span class="label">Founded</span>
+        </div>
+        <div class="stat-card">
+          <span class="value">₹15Cr</span>
+          <span class="label">Annual Revenue</span>
+        </div>
+        <div class="stat-card">
+          <span class="value">30+</span>
+          <span class="label">Employees</span>
+        </div>
+        <div class="stat-card">
+          <span class="value">30K+</span>
+          <span class="label">Books/Day</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <h2>Our Journey</h2>
+      <p>The company began as Nataraj Book Traders, a small retail shop in Durgad Bail, Hubli. They purchased books from other companies and sold them in the market. Gradually, as they expanded their inventory to include notebooks, A4 sheets, card sheets, and other stationery items, they built customer trust and grew their market presence.</p>
+      
+      <p>Armed with increasing popularity, they transitioned into the wholesale market, supplying to retail shops across Hubli and beyond. Their commitment to timely delivery opened doors to more customers and larger orders.</p>
+      
+      <p>Today, the manufacturing facility spans 8,000-8,500 square feet in Nekar Nagar, producing a diverse range of notebooks and stationery products under the trusted brand name "SCHOOLMATE."</p>
+    </section>
+
+    <section class="blog-section">
+      <h2>Leadership</h2>
+      <ul class="values-list">
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Mr. Manjayya Bhavimath</h4>
+            <p>Shareholder & Managing Director</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Mrs. Sukanya Bhavimath</h4>
+            <p>Shareholder</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Mr. Rajashekarayya Saunsthanmath</h4>
+            <p>Shareholder</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Mr. Omkaresh Saunsthanmath</h4>
+            <p>Shareholder</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="blog-section">
+      <h2>SWOC Analysis</h2>
+      <div class="swoc-grid">
+        <div class="swoc-card strength">
+          <h4>Strengths</h4>
+          <ul>
+            <li>Market penetration through quality notebooks</li>
+            <li>Diverse product portfolio</li>
+            <li>Locally recognized SCHOOLMATE brand</li>
+            <li>Owned retail & wholesale network</li>
+          </ul>
+        </div>
+        <div class="swoc-card weakness">
+          <h4>Weaknesses</h4>
+          <ul>
+            <li>Limited skilled workforce</li>
+            <li>Single manufacturing unit</li>
+          </ul>
+        </div>
+        <div class="swoc-card opportunity">
+          <h4>Opportunities</h4>
+          <ul>
+            <li>Improve distribution network</li>
+            <li>Digital marketing expansion</li>
+            <li>Market expansion to new regions</li>
+          </ul>
+        </div>
+        <div class="swoc-card challenge">
+          <h4>Challenges</h4>
+          <ul>
+            <li>Competition from major brands</li>
+            <li>COVID-19 economic impact</li>
+            <li>Innovation pressure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <h2>Our Products</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <h4>Notebooks</h4>
+          <p>1-line, 2-line, 3-line, 4-line, square line, and plain notebooks under the SCHOOLMATE brand.</p>
+        </div>
+        <div class="product-card">
+          <h4>Rough Books</h4>
+          <p>40-50 GSM paper for rough work and short notes, used by students and professionals alike.</p>
+        </div>
+        <div class="product-card">
+          <h4>Registers</h4>
+          <p>FS size (203×330mm) ledgers for business accounts and day-to-day record keeping.</p>
+        </div>
+        <div class="product-card">
+          <h4>Computer Paper</h4>
+          <p>Various sizes including 10×12 and 7.5×12 for office and printing needs.</p>
+        </div>
+        <div class="product-card">
+          <h4>Files</h4>
+          <p>Lamination files, box files, TET files, advocate files, and custom solutions.</p>
+        </div>
+        <div class="product-card">
+          <h4>A4 Sheets</h4>
+          <p>Designed and non-designed options for offices, schools, and printing businesses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <h2>CSR Activities</h2>
+      <p>Eskay Industries believes in giving back to the community:</p>
+      <ul class="values-list">
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Free Books for Needy</h4>
+            <p>Providing free books to families with low income levels.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Charitable Donations</h4>
+            <p>Contributions to charitable committees and causes.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon"></div>
+          <div class="content">
+            <h4>Education Support</h4>
+            <p>Sponsoring school expenses for two children in need.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <section class="cta-section">
+    <h2>Partner With Us</h2>
+    <p>Join our growing network of retailers and distributors across Karnataka. Experience the quality that has made SCHOOLMATE a trusted name in education.</p>
+    <a href="contact.html" class="btn-outline" style="background: var(--gold); color: var(--navy); padding: 1rem 2.5rem; font-size: 0.8rem;">Get In Touch</a>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <span class="brand">NATARAJ</span>
+      <span class="copyright">© 2024 Nataraj Book Manufacturer. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 80) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+  </script>
+</body>
+</html>

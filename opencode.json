@@ -1,0 +1,21 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "magic": {
+      "type": "local",
+      "command": ["npx", "-y", "@21st-dev/magic@latest"],
+      "environment": {
+        "API_KEY": "cf18116c294b2625c5ee41497b3148a54d650c89e3df020ebc8160fbe9038f24"
+      },
+      "enabled": true
+    },
+    "coderabbitai": {
+      "type": "local",
+      "command": ["npx", "-y", "coderabbitai-mcp@latest"],
+      "environment": {
+        "GITHUB_PAT": "YOUR_GITHUB_TOKEN_HERE"
+      },
+      "enabled": true
+    }
+  }
+}

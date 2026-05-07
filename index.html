@@ -40,7 +40,7 @@
     /* ─── PREMIUM LOGO LOADER ─── */
     #loader {
       position: fixed; inset: 0; 
-      background: #FFFFFF; /* Matching New Logo Background */
+      background: #1A2F4B;
       z-index: 2000;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       transition: all 1.5s var(--ease-cinema);
@@ -308,14 +308,19 @@
     <div class="loader-logo-wrapper" id="loader-logo">
       <div class="loader-ring"></div>
       <div class="loader-glow"></div>
-      <img src="Images/Nataraj%20logo.png" alt="Nataraj Construction" loading="eager" decoding="async">
+      <img src="Images/nataraj%20loading%20logo.png" alt="Nataraj" loading="eager" decoding="async">
+    </div>
+    <div class="loader-text" style="text-align:center;margin-top:1.5rem;">
+      <p style="font-family:'Noto Serif',serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;">Established Hubballi 1997</p>
+      <p style="font-family:'Inter',sans-serif;font-size:0.7rem;color:rgba(249,247,242,0.5);letter-spacing:0.15em;margin-top:0.8rem;">Accessing Archive<span class="loader-dots">...</span></p>
     </div>
   </div>
+  <style>.loader-dots{animation:dotPulse 1.5s ease-in-out infinite;}@keyframes dotPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}</style>
 
   <nav id="navbar">
     <a href="#" class="logo" style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: 0.25em; color: var(--parchment);">NATARAJ</a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#about">Legacy</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="#features">Systems</a></li>
       <li><a href="#partnership">Partnership</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -426,21 +431,27 @@
       <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-family: 'Cormorant Garamond', serif; color: var(--parchment); margin-bottom: 2rem; line-height: 1.2;">Grow Your Business with Premium Stationery Solutions</h2>
       <p style="font-size: 1.15rem; color: var(--parchment); opacity: 0.85; max-width: 700px; margin: 0 auto 4rem; line-height: 1.8;">Partner with Nataraj for unrivaled wholesale pricing, consistent product quality, and reliable supply chains that keep your business running without interruption.</p>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem; text-align: left;">
-        <div style="background: rgba(255,255,255,0.05); padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border);">
-          <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin-bottom: 1.5rem;"></div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--parchment); margin-bottom: 1rem;">Competitive Wholesale Pricing</h3>
-          <p style="font-size: 1rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">High profit margins on every unit with tiered pricing designed for businesses of all sizes.</p>
+      <div class="grid-section premium-grid" style="margin-bottom: 4rem; text-align: left;">
+        <div class="glass-card glow-item">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold), #b8952e); border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);">
+            <svg width="24" height="24" fill="var(--navy)" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <h3 style="font-family: 'Noto Serif', serif; font-size: 1.4rem; color: var(--parchment); margin-bottom: 1rem; font-weight: 600;">Competitive Wholesale Pricing</h3>
+          <p style="font-size: 0.95rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">High profit margins on every unit with tiered pricing designed for businesses of all sizes.</p>
         </div>
-        <div style="background: rgba(255,255,255,0.05); padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border);">
-          <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin-bottom: 1.5rem;"></div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--parchment); margin-bottom: 1rem;">Consistent Quality & Supply</h3>
-          <p style="font-size: 1rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">Every order meets our exacting standards with reliable logistics you can count on.</p>
+        <div class="glass-card glow-item">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold), #b8952e); border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);">
+            <svg width="24" height="24" fill="var(--navy)" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+          </div>
+          <h3 style="font-family: 'Noto Serif', serif; font-size: 1.4rem; color: var(--parchment); margin-bottom: 1rem; font-weight: 600;">Consistent Quality & Supply</h3>
+          <p style="font-size: 0.95rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">Every order meets our exacting standards with reliable logistics you can count on.</p>
         </div>
-        <div style="background: rgba(255,255,255,0.05); padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border);">
-          <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin-bottom: 1.5rem;"></div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--parchment); margin-bottom: 1rem;">Custom Bulk Orders</h3>
-          <p style="font-size: 1rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">Flexible quantities and bespoke solutions tailored to your specific requirements.</p>
+        <div class="glass-card glow-item">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold), #b8952e); border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);">
+            <svg width="24" height="24" fill="var(--navy)" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 6.64 7.73 10.03 7.05 14.04L5 14.04C5.6 18.88 9.1 22.99 14 23c2.12 0 4.1-.75 5.6-1.95l-1.79-2.55c-.64.36-1.38.59-2.17.59-1.79 0-3.26-1.08-3.9-2.62-.64 1.54-2.11 2.62-3.9 2.62-2.07 0-3.79-1.5-4.24-3.48-.27-.97.14-2.02.94-2.71L3.8 12l1.18-.8c.8-.69 1.21-1.66.94-2.71.45-1.98 2.17-3.48 4.24-3.48 1.79 0 3.26 1.08 3.9 2.62.64-1.54 2.11-2.62 3.9-2.62 1.27 0 2.44.52 3.26 1.35L21.7 8.35C20.56 6.87 18.94 6 17.23 6 14.77 6 12.66 8.06 12 11.06c-.66-3-2.77-5.06-5.23-5.06-2.36 0-4.44 1.69-5.02 4.01-.3 1.2.18 2.47.94 3.32L9.6 13.33c-.41-.56-.64-1.22-.64-1.95 0-1.58 1.37-2.88 3.04-2.88 1.67 0 2.84 1.3 2.84 2.88s-1.17 2.88-2.84 2.88c-.79 0-1.53-.31-2.08-.82l-1.82 1.39c.9 1.09 2.15 1.73 3.52 1.73 2.22 0 4.05-1.35 4.78-3.25.33-.89.15-1.86-.43-2.6l-1.45 1.18z"/></svg>
+          </div>
+          <h3 style="font-family: 'Noto Serif', serif; font-size: 1.4rem; color: var(--parchment); margin-bottom: 1rem; font-weight: 600;">Custom Bulk Orders</h3>
+          <p style="font-size: 0.95rem; color: var(--parchment); opacity: 0.75; line-height: 1.7;">Flexible quantities and bespoke solutions tailored to your specific requirements.</p>
         </div>
       </div>
       
@@ -453,10 +464,10 @@
 
   <style>
     .feature-card-3d:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: var(--mustard-gold);
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.08) !important;
+      border-color: var(--gold) !important;
+      transform: translateY(-12px) scale(1.02) !important;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(212, 175, 55, 0.15) !important;
     }
     .feature-card-3d:hover .card-bg-glow { opacity: 1; }
 
@@ -470,6 +481,141 @@
         font-size: 0.7rem;
         color: var(--gold);
         opacity: 0.4;
+      }
+    }
+
+    /* ===== PREMIUM RESPONSIVE GRID SYSTEM ===== */
+    .grid-section, 
+    [style*="grid"],
+    .features-grid,
+    .services-grid,
+    .products-grid,
+    .cards-grid,
+    .testimonials-grid,
+    .partnership-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+      gap: 1.5rem !important;
+      padding: 1rem !important;
+    }
+    
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(212, 175, 55, 0.15) !important;
+      border-radius: 12px !important;
+      padding: 1.5rem !important;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+    
+    .glass-card::before {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%) !important;
+      opacity: 0 !important;
+      transition: opacity 0.4s ease !important;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.1) !important;
+      border-color: rgba(212, 175, 55, 0.3) !important;
+    }
+    
+    .glass-card:hover::before {
+      opacity: 1 !important;
+    }
+    
+    /* Premium Grid Items */
+    .grid-item {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      min-height: 200px !important;
+      position: relative !important;
+    }
+    
+    /* Soft Glow Effect */
+    .glow-item {
+      position: relative !important;
+    }
+    
+    .glow-item::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 0% !important;
+      height: 2px !important;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent) !important;
+      transition: width 0.4s ease !important;
+      opacity: 0 !important;
+    }
+    
+    .glow-item:hover::after {
+      width: 80% !important;
+      opacity: 1 !important;
+    }
+    
+    /* Smooth Scaling */
+    .scale-item {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+    }
+    
+    .scale-item:hover {
+      transform: scale(1.03) !important;
+    }
+    
+    /* Premium Card Styling */
+    .premium-card {
+      background: linear-gradient(145deg, rgba(26, 47, 75, 0.4) 0%, rgba(26, 47, 75, 0.2) 100%) !important;
+      border-radius: 16px !important;
+      padding: 2rem !important;
+      border: 1px solid rgba(212, 175, 55, 0.1) !important;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    .premium-card:hover {
+      background: linear-gradient(145deg, rgba(26, 47, 75, 0.5) 0%, rgba(26, 47, 75, 0.3) 100%) !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    /* Equal Spacing Grid */
+    .equal-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+      gap: 2rem !important;
+      padding: 1rem 0 !important;
+    }
+    
+    .equal-grid > * {
+      flex: 1 1 250px !important;
+      max-width: 100% !important;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .grid-section, 
+      [style*="grid"],
+      .equal-grid {
+        gap: 1rem !important;
+        padding: 0.5rem !important;
+      }
+    }
+    
+    @media (min-width: 1920px) {
+      .grid-section, 
+      [style*="grid"],
+      .equal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 2.5rem !important;
       }
     }
   </style>
